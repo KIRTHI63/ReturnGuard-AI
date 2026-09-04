@@ -7,7 +7,6 @@ import os
 PROJECT_ROOT = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..")
 )
-
 sys.path.append(PROJECT_ROOT)
 
 from ml.src.predict import predict_return_risk
@@ -18,8 +17,9 @@ app = FastAPI(
     description="AI-powered return risk assessment API",
     version="2.0.0"
 )
-
-
+print("REGISTERED ROUTES:")
+for route in app.routes:
+    print(route.path, route.methods)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
