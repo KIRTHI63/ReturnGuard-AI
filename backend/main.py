@@ -17,9 +17,6 @@ app = FastAPI(
     description="AI-powered return risk assessment API",
     version="2.0.0"
 )
-print("REGISTERED ROUTES:")
-for route in app.routes:
-    print(route.path, route.methods)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -230,3 +227,6 @@ def predict(order: Order):
             }
         }
     }
+print("FINAL REGISTERED ROUTES:")
+for route in app.routes:
+    print(route.path, route.methods)
