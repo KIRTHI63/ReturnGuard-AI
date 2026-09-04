@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ReturnGuard AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="background-grid"></div>
+<div class="ambient ambient-one"></div>
+<div class="ambient ambient-two"></div>
+
+<header class="topbar">
+    <div class="brand">
+        <div class="brand-mark">R</div>
+        <div>
+            <div class="brand-name">ReturnGuard <span>AI</span></div>
+            <div class="brand-subtitle">Return Risk Intelligence</div>
+        </div>
+    </div>
+
+    <div class="engine-status">
+        <span class="status-dot"></span>
+        AI ENGINE ONLINE
+    </div>
+</header>
+
+
+<main class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="hero-copy">
+
+            <div class="eyebrow">
+                AI-POWERED COMMERCE INTELLIGENCE
+            </div>
+
+            <h1>
+                Stop returns<br>
+                <span>before they happen.</span>
+            </h1>
+
+            <p>
+                Predict return risk before fulfillment using customer,
+                transaction and behavioral signals.
+            </p>
+
+            <div class="hero-pills">
+                <div>⚡ Real-time inference</div>
+                <div>◉ Behavioral signals</div>
+                <div>₹ Exposure intelligence</div>
+            </div>
+
+        </div>
+
+        <div class="hero-visual">
+
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="orbit orbit-three"></div>
+
+            <div class="ai-core">
+                <div class="core-glow"></div>
+                <div class="core-text">
+                    <strong>AI</strong>
+                    <span>RISK ENGINE</span>
+                </div>
+            </div>
+
+            <div class="orbit-node node-one">₹</div>
+            <div class="orbit-node node-two">AI</div>
+            <div class="orbit-node node-three">!</div>
+        </div>
+
+    </section>
+
+
+    <!-- METRICS -->
+    <section class="metrics">
+
+        <div class="metric-card">
+            <span class="metric-label">ORDERS ANALYZED</span>
+            <strong id="ordersAnalyzed">0</strong>
+            <small>AI assessments</small>
+        </div>
+
+        <div class="metric-card">
+            <span class="metric-label">HIGH-RISK ORDERS</span>
+            <strong id="highRiskOrders">0</strong>
+            <small>requiring intervention</small>
+        </div>
+
+        <div class="metric-card">
+            <span class="metric-label">AVERAGE RISK</span>
+            <strong id="averageRisk">0%</strong>
+            <small>portfolio probability</small>
+        </div>
+
+        <div class="metric-card">
+            <span class="metric-label">EXPOSURE IDENTIFIED</span>
+            <strong id="exposureIdentified">₹0</strong>
+            <small>expected return exposure</small>
+        </div>
+
+    </section>
+
+
+    <!-- WORKSPACE -->
+    <section class="workspace">
+
+        <!-- FORM -->
+        <div class="panel form-panel">
+
+            <div class="panel-header">
+                <div>
+                    <span class="eyebrow">ORDER ANALYSIS</span>
+                    <h2>Analyze an order</h2>
+                    <p>Enter transaction and customer signals.</p>
+                </div>
+
+                <div class="panel-icon">⌁</div>
+            </div>
+
+
+            <form id="riskForm">
+
+                <div class="form-grid">
+
+                    <div class="field">
+                        <label>Order Value</label>
+                        <div class="input-wrap">
+                            <span>₹</span>
+                            <input id="order_value" type="number" min="1" placeholder="8500" required>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Customer Age</label>
+                        <input id="customer_age" type="number" min="1" max="120" placeholder="24" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Previous Orders</label>
+                        <input id="previous_orders" type="number" min="0" placeholder="10" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Previous Returns</label>
+                        <input id="previous_returns" type="number" min="0" placeholder="5" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Delivery Days</label>
+                        <input id="delivery_days" type="number" min="1" placeholder="8" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Payment Method</label>
+                        <select id="payment_method" required>
+                            <option value="COD">COD</option>
+                            <option value="UPI">UPI</option>
+                            <option value="CARD">CARD</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Customer Rating</label>
+                        <input id="customer_rating" type="number" min="0" max="5" step="0.1" placeholder="2.4" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Return Rate</label>
+                        <div class="input-wrap">
+                            <input id="return_rate" type="number" min="0" max="1" step="0.01" placeholder="0.50" required>
+                            <span>%</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <button id="analyzeBtn" type="submit" class="analyze-btn">
+                    <span id="buttonText">Analyze return risk</span>
+                    <span class="button-arrow">→</span>
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- RESULT -->
+        <div class="panel result-panel">
+
+            <!-- EMPTY -->
+            <div id="emptyState" class="result-state">
+
+                <div class="empty-orb">
+                    <span>AI</span>
+                </div>
+
+                <h2>AI Risk Assessment</h2>
+
+                <p>
+                    Analyze an order to generate its predicted
+                    return probability and intervention strategy.
+                </p>
+
+                <div class="empty-line"></div>
+
+                <span class="ready-text">
+                    ● READY FOR ANALYSIS
+                </span>
+
+            </div>
+
+
+            <!-- LOADING -->
+            <div id="loadingState" class="result-state hidden">
+
+                <div class="loader-ring"></div>
+
+                <h2>Analyzing order</h2>
+
+                <p id="loadingText">
+                    Running machine-learning inference...
+                </p>
+
+                <span class="processing-text">
+                    PROCESSING SIGNALS
+                </span>
+
+            </div>
+
+
+            <!-- RESULT -->
+            <div id="resultState" class="result-state hidden">
+
+                <div class="result-header">
+                    <div>
+                        <span class="eyebrow">AI ASSESSMENT</span>
+                        <h2>Return Risk</h2>
+                    </div>
+
+                    <div id="riskLevel" class="risk-level">
+                        HIGH
+                    </div>
+                </div>
+
+
+                <div class="risk-score">
+
+                    <svg class="gauge" viewBox="0 0 200 120">
+
+                        <path
+                            class="gauge-track"
+                            d="M 20 100 A 80 80 0 0 1 180 100"
+                        />
+
+                        <path
+                            id="gaugeProgress"
+                            class="gauge-progress"
+                            d="M 20 100 A 80 80 0 0 1 180 100"
+                        />
+
+                    </svg>
+
+                    <div class="score-center">
+                        <strong id="probability">0.0%</strong>
+                        <span>RETURN PROBABILITY</span>
+                    </div>
+
+                </div>
+
+
+                <p id="riskDescription" class="risk-description"></p>
+
+
+                <div class="result-section">
+
+                    <div class="section-title">
+                        <span>RISK SIGNALS</span>
+                        <strong id="signalCount">0 signals</strong>
+                    </div>
+
+                    <div id="riskFactors" class="risk-factors"></div>
+
+                </div>
+
+
+                <div class="recommendation">
+
+                    <div class="recommendation-icon">⚡</div>
+
+                    <div>
+                        <span>RECOMMENDED ACTION</span>
+                        <p id="recommendation">
+                            Review before fulfillment.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMMAND CENTER -->
+    <section class="intelligence-section">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="eyebrow">PORTFOLIO INTELLIGENCE</span>
+                <h2>Risk Command Center</h2>
+                <p>
+                    Real-time business exposure calculated from analyzed orders.
+                </p>
+            </div>
+
+            <div class="live-indicator">
+                <span></span>
+                LIVE ANALYTICS
+            </div>
+
+        </div>
+
+
+        <div class="intelligence-grid">
+
+            <div class="intel-card">
+                <div class="intel-top">
+                    <span>Potential Exposure</span>
+                    <span class="intel-icon">₹</span>
+                </div>
+
+                <div id="intelExposure" class="intel-value">₹0</div>
+
+                <div class="intel-description">
+                    Expected value exposed to returns
+                </div>
+
+                <div class="intel-progress">
+                    <div id="exposureProgress"></div>
+                </div>
+            </div>
+
+
+            <div class="intel-card">
+                <div class="intel-top">
+                    <span>High-Risk Orders</span>
+                    <span class="intel-icon">!</span>
+                </div>
+
+                <div id="intelHighRisk" class="intel-value">0</div>
+
+                <div class="intel-description">
+                    Orders requiring intervention
+                </div>
+
+                <div class="intel-mini">
+                    <span id="highRiskPercent">0%</span>
+                    of analyzed orders
+                </div>
+            </div>
+
+
+            <div class="intel-card">
+                <div class="intel-top">
+                    <span>Portfolio Risk</span>
+                    <span class="intel-icon">◉</span>
+                </div>
+
+                <div id="intelAvgRisk" class="intel-value">0%</div>
+
+                <div class="intel-description">
+                    Average predicted return probability
+                </div>
+
+                <div class="risk-bar">
+                    <div id="portfolioRiskBar"></div>
+                </div>
+            </div>
+
+
+            <div class="intel-card">
+                <div class="intel-top">
+                    <span>Intervention Queue</span>
+                    <span class="intel-icon">⚡</span>
+                </div>
+
+                <div id="intelQueue" class="intel-value">0</div>
+
+                <div class="intel-description">
+                    Orders recommended for review
+                </div>
+
+                <div class="intel-status">
+                    <span class="status-dot"></span>
+                    AI monitoring active
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="distribution-card">
+
+            <div class="distribution-header">
+
+                <div>
+                    <span class="eyebrow">RISK DISTRIBUTION</span>
+                    <h3>Order Portfolio</h3>
+                </div>
+
+                <span id="distributionTotal">0 orders</span>
+
+            </div>
+
+
+            <div class="distribution-bars">
+
+                <div class="distribution-row">
+
+                    <div class="distribution-label">
+                        <span>HIGH</span>
+                        <strong id="highCount">0</strong>
+                    </div>
+
+                    <div class="distribution-track">
+                        <div id="highBar" class="distribution-fill high"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="distribution-row">
+
+                    <div class="distribution-label">
+                        <span>MEDIUM</span>
+                        <strong id="mediumCount">0</strong>
+                    </div>
+
+                    <div class="distribution-track">
+                        <div id="mediumBar" class="distribution-fill medium"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="distribution-row">
+
+                    <div class="distribution-label">
+                        <span>LOW</span>
+                        <strong id="lowCount">0</strong>
+                    </div>
+
+                    <div class="distribution-track">
+                        <div id="lowBar" class="distribution-fill low"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HISTORY -->
+    <section class="history-section">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="eyebrow">RECENT ANALYSIS</span>
+                <h2>Analysis Log</h2>
+            </div>
+
+            <button id="clearHistory" class="clear-btn">
+                Clear history
+            </button>
+
+        </div>
+
+        <div id="historyList" class="history-list"></div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <div>
+        <strong>ReturnGuard AI</strong>
+        <span>AI-powered return risk intelligence</span>
+    </div>
+
+    <div class="footer-status">
+        <span></span>
+        System operational
+    </div>
+</footer>
+
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
