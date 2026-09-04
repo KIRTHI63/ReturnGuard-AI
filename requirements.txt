@@ -1,0 +1,41 @@
+# ReturnGuard AI - Backend Dependencies
+# Python packages required to run the FastAPI backend,
+# machine-learning prediction engine, and data processing layer.
+
+# -----------------------------
+# Web API Framework
+# -----------------------------
+
+# FastAPI:
+# Used to build the REST API that receives order information
+# and returns AI-generated return-risk predictions.
+fastapi>=0.115,<1.0
+
+# Uvicorn:
+# ASGI server used to run the FastAPI application locally
+# and in production environments.
+uvicorn[standard]>=0.30,<1.0
+
+# Pydantic:
+# Validates incoming order data and ensures that API requests
+# follow the expected data structure and data types.
+pydantic>=2.7,<3.0
+
+
+# -----------------------------
+# Machine Learning & Data
+# -----------------------------
+
+# NumPy:
+# Provides numerical computing functionality used by the
+# machine-learning and data-processing stack.
+numpy>=1.26,<3.0
+
+# Pandas:
+# Used for structured data manipulation and preprocessing.
+pandas>=2.2,<3.0
+
+# Scikit-learn:
+# Provides the machine-learning algorithms and preprocessing
+# utilities used by the ReturnGuard prediction engine.
+scikit-learn>=1.5,<2.0
